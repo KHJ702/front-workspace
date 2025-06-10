@@ -1,0 +1,21 @@
+/* :only-child */
+#test1 > p:only-child{
+    background-color: steelblue;
+}
+
+/* :only-of-type */
+#test2 > p:only-of-type{
+    background-color: aqua;
+} /*(p태그 안에 hr, pre 태그 등 문단을 나누는 (잘못된) 태그를 넣을 시 X)*/
+
+/*:empty*/
+#test3 > p:empty{
+    height: 30px;
+    background-color: lime;
+}
+
+/* 선택자1, 선택자2, 선택자3, ... */
+#test4-1, #test4-2, div.test4-3 {
+    background-color: yellow;
+    border: 3px solid black;
+}

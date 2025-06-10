@@ -72,7 +72,7 @@ div[class="div-class"][name~=name3]{
     background-color: darkorange;
     color : red;
 }
-/* 명시도는 자손 선택자가 더 높다~! */
+/* 똑같이 들어가면 명시도는 똑같다 #test1 > ul > li /vs/ #test1 > ul) */
 
 /*
     3. 동위 선택자
