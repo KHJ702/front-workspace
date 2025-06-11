@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>CSS 선택자 & 레이아웃 핵심 정리</title>
+<style>
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f9f9f9;
+    color: #333;
+    padding: 30px;
+    line-height: 1.6;
+  }
+  h1, h2 {
+    color: #0066cc;
+    border-bottom: 2px solid #0066cc;
+    padding-bottom: 4px;
+  }
+  pre, code {
+    background: #eee;
+    border-radius: 5px;
+    padding: 8px 12px;
+    display: block;
+    margin: 10px 0;
+    font-size: 0.95em;
+    white-space: pre-wrap;
+  }
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 600px;
+    margin: 15px 0 30px;
+  }
+  th, td {
+    border: 1px solid #aaa;
+    padding: 8px 12px;
+    text-align: left;
+  }
+  th {
+    background: #ddeeff;
+  }
+  ul, ol {
+    max-width: 600px;
+  }
+  .selector-box {
+    border: 1px solid #aaa;
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    max-width: 600px;
+    border-radius: 5px;
+  }
+  /* 1. 인라인 스타일 예시 */
+  /* (인라인 스타일은 HTML에 직접 적용) */
+
+  /* 2. 기본 선택자 */
+  p.tag-select { font-size: 18px; color: #008000; }
+  .class-select { color: #b22222; font-weight: bold; }
+  #id-select { font-size: 20px; color: #000080; font-weight: 700; }
+
+  /* 3. 조합 선택자 */
+  div[class^="user"] { background-color: #f9f9f9; border-left: 5px solid #4caf50; padding: 8px; margin-bottom: 5px; }
+  div[class$="info"] { color: #d32f2f; font-weight: 700; }
+  div[class~="pro"] { background-color: coral; color: white; padding: 5px 10px; border-radius: 4px; display: inline-block; margin-bottom: 5px; }
+
+  /* 4. 상태 기반 선택자 */
+  input:focus {
+    background-color: #ffff99;
+    outline: none;
+    border: 2px solid #ffcc00;
+  }
+  input:hover {
+    background-color: #ccffcc;
+  }
+
+  /* 5. 구조 선택자 */
+  ul li:nth-child(2) { font-weight: bold; color: #0066cc; }
+  p.only-type {
+    color: #8800cc;
+    font-style: italic;
+  }
+
+  /* 6. 레이아웃 - display */
+  .block-example {
+    display: block;
+    background: #d1ecf1;
+    padding: 10px;
+    margin-bottom: 8px;
+  }
+  .inline-example {
+    display: inline;
+    background: #f8d7da;
+    padding: 4px 6px;
+    margin-right: 5px;
+  }
+  .inline-block-example {
+    display: inline-block;
+    background: #fff3cd;
+    padding: 10px;
+    margin-right: 5px;
+  }
+  .none-example {
+    display: none;
+  }
+
+  /* 7. 박스 모델 */
+  .box-model {
+    width: 100px;
+    padding: 20px;
+    border: 5px solid black;
+    margin: 10px;
+    background: #e2e3e5;
+    text-align: center;
+  }
+
+  /* 8. position */
+  .container {
+    position: relative;
+    background: #f0f0f0;
+    border: 1px solid #999;
+    height: 120px;
+    margin-bottom: 30px;
+  }
+  .child {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: #ffb74d;
+    padding: 10px;
+    border-radius: 4px;
+  }
+  .relative-box {
+    position: relative;
+    background: #c5cae9;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+
+  /* 9. 우선순위 설명 */
+  ol li {
+    margin-bottom: 6px;
+  }
+</style>
+</head>
+<body>
+
+<h1>🌐 CSS 선택자 & 레이아웃 핵심 정리</h1>
+
+<section>
+  <h2>1. CSS 적용 방식</h2>
+  <div class="selector-box">
+    <p><strong>인라인 스타일:</strong> &lt;span style="color:red; font-weight:bold;"&gt;이 텍스트는 빨간색 인라인 스타일&lt;/span&gt;</p>
+    <p><span style="color:red; font-weight:bold;">이 텍스트는 빨간색 인라인 스타일</span></p>
+  </div>
+  <ul>
+    <li><strong>인라인 스타일:</strong> 태그 내 <code>style=""</code>로 직접 지정</li>
+    <li><strong>내부 스타일:</strong> &lt;style&gt; 태그 안에 CSS 작성</li>
+    <li><strong>외부 스타일:</strong> 별도의 .css 파일 연결</li>
+  </ul>
+</section>
+
+<section>
+  <h2>2. 기본 선택자 종류</h2>
+  <div class="selector-box">
+    <p class="tag-select">이 문장은 &lt;p&gt; 태그 선택자 예시입니다.</p>
+    <p class="class-select">이 문장은 클래스 선택자 예시입니다.</p>
+    <p id="id-select">이 문장은 ID 선택자 예시입니다.</p>
+  </div>
+  <table>
+    <thead>
+      <tr><th>선택자</th><th>예시</th><th>설명</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>전체 선택자</td><td><code>* { color: black; }</code></td><td>모든 요소에 적용</td></tr>
+      <tr><td>태그 선택자</td><td><code>p { font-size: 16px; }</code></td><td>해당 태그 전체</td></tr>
+      <tr><td>클래스 선택자</td><td><code>.class1 { color: green; }</code></td><td>class 속성 대상</td></tr>
+      <tr><td>ID 선택자</td><td><code>#id1 { font-size: 18px; }</code></td><td>ID 속성 대상</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <h2>3. 조합 선택자</h2>
+  <div class="selector-box">
+    <div class="user-box">div[class^="user"]: 시작값 'user'</div>
+    <div class="info-box info">div[class$="info"]: 끝값 'info'</div>
+    <div class="pro-box pro">div[class~="pro"]: 단어 포함 'pro'</div>
+  </div>
+  <pre><code>
+div[class^="user"] { background-color: lightgray; }
+div[class$="info"] { color: red; }
+div[class~="pro"] { background-color: coral; }
+  </code></pre>
+  <ul>
+    <li><code>^=</code>: 시작값</li>
+    <li><code>$=</code>: 끝값</li>
+    <li><code>~=</code>: 단어 포함</li>
+  </ul>
+</section>
+
+<section>
+  <h2>4. 상태 기반 선택자</h2>
+  <input type="text" placeholder="포커스 & 호버 해보세요" />
+  <pre><code>
+input:focus { background-color: yellow; }
+input:hover { background-color: green; }
+  </code></pre>
+  <ul>
+    <li><code>:focus</code>: 입력 포커스 시</li>
+    <li><code>:hover</code>: 마우스 오버 시</li>
+  </ul>
+</section>
+
+<section>
+  <h2>5. 구조 선택자</h2>
+  <ul>
+    <li><code>li:nth-child(2)</code>: 두 번째 자식 선택</li>
+    <li><code>p:only-of-type</code>: 해당 태그가 유일할 때</li>
+  </ul>
+  <ul>
+    <li>예시:</li>
+    <li>
+      <ul>
+        <li>첫째 항목</li>
+        <li><strong>둘째 항목 (bold & blue)</strong></li>
+        <li>셋째 항목</li>
+      </ul>
+    </li>
+  </ul>
+  <p class="only-type">이 문장은 유일한 &lt;p&gt; 태그이므로 색상이 달라요.</p>
+  <pre><code>
+li:nth-child(2) { font-weight: bold; }
+p:only-of-type { color: blue; }
+  </code></pre>
+</section>
+
+<section>
+  <h2>6. 레이아웃 - display</h2>
+  <div class="block-example">block 요소 (줄 바꿈, 전체 너비)</div>
+  <span class="inline-example">inline 요소</span>
+  <span class="inline-block-example">inline-block 요소 (크기 지정 가능)</span>
+  <div class="none-example">숨김 요소 (보이지 않음)</div>
+  <table>
+    <thead>
+      <tr><th>속성</th><th>설명</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>block</td><td>줄 바꿈, 전체 폭 사용</td></tr>
+      <tr><td>inline</td><td>한 줄 내 표시</td></tr>
+      <tr><td>inline-block</td><td>inline + 크기 지정 가능</td></tr>
+      <tr><td>none</td><td>화면에서 숨김</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <h2>7. 박스 모델</h2>
+  <div class="box-model">박스 모델 예시</div>
+  <p>HTML 요소는 <strong>margin → border → padding → content</strong> 순서로 구성</p>
+  <pre><code>
+.box {
+  width: 100px;
+  padding: 20px;
+  border: 5px solid black;
+  margin: 10px;
+}
+  </code></pre>
+</section>
+
+<section>
+  <h2>8. 요소 배치 (position)</h2>
+  <div class="container">
+    <div class="child">절대 위치 요소</div>
+  </div>
+  <pre><code>
+    
+.container {
+  position: relative;
+}
+.child {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+  </code></pre>
+</section>
+
+<section>
+  <h2>9. 우선순위</h2>
+  <ol>
+    <li><strong>!important</strong> → 최우선</li>
+    <li>인라인 스타일</li>
+    <li>ID 선택자</li>
+    <li>클래스 / 속성 / 상태 선택자</li>
+    <li>태그 선택자</li>
+    <li>전체 선택자</li>
+  </ol>
+</section>
+
+</body>
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Flex 아이템 속성 핵심 정리</title>
+<style>
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 20px;
+    line-height: 1.6;
+  }
+  h2 {
+    margin-top: 40px;
+    border-bottom: 2px solid #444;
+    padding-bottom: 6px;
+  }
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 500px;
+    margin-bottom: 20px;
+  }
+  th, td {
+    border: 1px solid #ccc;
+    padding: 6px 10px;
+    text-align: center;
+  }
+  th {
+    background: #eee;
+  }
+
+  /* 1. order */
+  .order-0 { order: 0; color: #222; }
+  .order-1 { order: 1; color: #0080ff; }
+  .order--1 { order: -1; color: #ff5500; }
+
+  /* 2. flex-grow */
+  .grow-0 { flex-grow: 0; }
+  .grow-1 { flex-grow: 1; background-color: #add8e6; }
+  .grow-2 { flex-grow: 2; background-color: #87ceeb; }
+  .grow-3 { flex-grow: 3; background-color: #4682b4; color: white; }
+
+  /* 3. flex-shrink */
+  .shrink-0 { flex-shrink: 0; color: #444; }
+  .shrink-1 { flex-shrink: 1; color: #008000; }
+  .shrink-2 { flex-shrink: 2; color: #ffaa00; }
+  .shrink-3 { flex-shrink: 3; color: #ff0000; }
+
+  /* 4. flex-basis */
+  .basis-150px { flex-basis: 150px; background-color: #ffebcd; }
+  .basis-10 { flex-basis: 10%; background-color: #ffe4e1; }
+  .basis-25 { flex-basis: 25%; background-color: #fafad2; }
+
+  /* 5. flex shorthand example */
+  .flex1 {
+    flex: 0 0 100px;
+    background-color: #deb887;
+    color: #333;
+  }
+
+  /* 6. align-self */
+  .self-start { align-self: flex-start; color: #2e8b57; font-weight: bold; }
+  .self-center { align-self: center; color: #1e90ff; font-weight: bold; }
+  .self-end { align-self: flex-end; color: #b22222; font-weight: bold; }
+
+  /* flex container style */
+  .flex-container {
+    display: flex;
+    height: 150px;
+    border: 1px solid #aaa;
+    gap: 10px;
+    padding: 10px;
+  }
+  .item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #999;
+    font-size: 1rem;
+    font-weight: 600;
+    min-width: 50px;
+  }
+</style>
+</head>
+<body>
+
+<h1>Flex 아이템 전용 속성 핵심 정리</h1>
+
+<h2>1. order: 아이템 순서 지정 🔀</h2>
+<p>순서가 달라져도 글자 색과 위치로 구분 가능</p>
+<div class="flex-container" style="width: 350px;">
+  <div class="item order--1">order: -1 (앞으로 당김)</div>
+  <div class="item order-0">order: 0 (기본 순서)</div>
+  <div class="item order-1">order: 1 (뒤로 밀기)</div>
+</div>
+
+<h2>2. flex-grow: 아이템 팽창 비율 ↔️</h2>
+<p>빈 공간 채우는 비율에 따라 아이템 넓이 차이</p>
+<div class="flex-container" style="width: 500px;">
+  <div class="item grow-1">grow: 1</div>
+  <div class="item grow-2">grow: 2</div>
+  <div class="item grow-3">grow: 3</div>
+</div>
+
+<h2>3. flex-shrink: 아이템 수축 비율 ↘️</h2>
+<p>컨테이너 폭이 줄어들 때 수축 속도 다름</p>
+<div class="flex-container" style="width: 300px;">
+  <div class="item shrink-0" style="width: 150px;">shrink: 0 (수축 안함)</div>
+  <div class="item shrink-1" style="width: 150px;">shrink: 1</div>
+  <div class="item shrink-2" style="width: 150px;">shrink: 2</div>
+  <div class="item shrink-3" style="width: 150px;">shrink: 3</div>
+</div>
+
+<h2>4. flex-basis: 아이템 기본 크기 📐</h2>
+<p>기본 크기(px, %)</p>
+<div class="flex-container" style="width: 600px;">
+  <div class="item basis-150px">basis: 150px</div>
+  <div class="item basis-10">basis: 10%</div>
+  <div class="item basis-25">basis: 25%</div>
+</div>
+
+<h2>5. flex: 축약 속성 ⚡</h2>
+<p>수축X, 팽창X, 기본크기 100px 설정</p>
+<div class="flex-container" style="width: 500px;">
+  <div class="item flex1">flex: 0 0 100px</div>
+  <div class="item grow-1">grow: 1</div>
+</div>
+
+<h2>6. align-self: 개별 아이템 교차축 정렬 ↕️</h2>
+<p>각 아이템의 교차축 위치 조절</p>
+<div class="flex-container" style="height: 150px; width: 600px; align-items: stretch;">
+  <div class="item self-start" style="height: 50px;">self-start (위)</div>
+  <div class="item self-center" style="height: 50px;">self-center (중앙)</div>
+  <div class="item self-end" style="height: 50px;">self-end (아래)</div>
+</div>
+
+</body>
+</html>

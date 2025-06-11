@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<title>HTML 태그별 효과 샘플</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 30px;
+    color: #333;
+  }
+  mark {
+    background-color: yellow;
+  }
+  code {
+    background-color: #f4f4f4;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: Consolas, monospace;
+  }
+  pre {
+    background-color: #f4f4f4;
+    padding: 10px;
+    border-left: 4px solid #ccc;
+    overflow-x: auto;
+  }
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 700px;
+    margin: 20px 0;
+  }
+  th, td {
+    border: 1px solid #aaa;
+    padding: 8px 12px;
+    text-align: left;
+  }
+  th {
+    background-color: #f0f0f0;
+  }
+  img {
+    max-width: 150px;
+    height: auto;
+  }
+  a {
+    color: blue;
+    text-decoration: underline;
+  }
+  a:hover {
+    color: darkred;
+  }
+  .block {
+    background:#def;
+    padding:10px;
+    margin-bottom:10px;
+  }
+  .inline {
+    background:#fde;
+    padding:5px;
+  }
+</style>
+</head>
+<body>
+
+<h1>HTML 태그별 효과 샘플</h1>
+
+<section>
+  <h2>1. 글자 관련 태그</h2>
+  <p><b>굵게 (b)</b></p>
+  <p><strong>강조(strong)</strong></p>
+  <p><i>기울임(i)</i></p>
+  <p><em>강조(em)</em></p>
+  <p><mark>형광펜(mark)</mark></p>
+  <p><code>코드 표시(code)</code></p>
+  <p>줄바꿈<br>태그(br)</p>
+</section>
+
+<section>
+  <h2>2. 목록 관련 태그</h2>
+  <p>순서 없는 목록 (ul):</p>
+  <ul>
+    <li>항목 1</li>
+    <li>항목 2</li>
+  </ul>
+
+  <p>순서 있는 목록 (ol):</p>
+  <ol>
+    <li>첫 번째</li>
+    <li>두 번째</li>
+  </ol>
+
+  <p>설명 목록 (dl):</p>
+  <dl>
+    <dt>HTML</dt>
+    <dd>웹페이지를 만드는 언어</dd>
+    <dt>CSS</dt>
+    <dd>스타일을 지정하는 언어</dd>
+  </dl>
+</section>
+
+<section>
+  <h2>3. 표 관련 태그</h2>
+  <table>
+    <thead>
+      <tr><th>태그</th><th>설명</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>&lt;table&gt;</td><td>표 전체</td></tr>
+      <tr><td>&lt;tr&gt;</td><td>행</td></tr>
+      <tr><td>&lt;th&gt;</td><td>제목 셀</td></tr>
+      <tr><td>&lt;td&gt;</td><td>데이터 셀</td></tr>
+      <tr><td>colspan / rowspan</td><td>셀 병합</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <h2>4. 이미지와 멀티미디어 관련 태그</h2>
+  <p>이미지 삽입: &lt;img&gt;</p>
+  <img src="https://via.placeholder.com/150" alt="샘플 이미지" />
+
+  <p>오디오 (audio):</p>
+  <audio controls>
+    <source src="https://www.w3schools.com/html/horse.ogg" type="audio/ogg" />
+    <source src="https://www.w3schools.com/html/horse.mp3" type="audio/mpeg" />
+    브라우저가 오디오 태그를 지원하지 않습니다.
+  </audio>
+
+  <p>비디오 (video):</p>
+  <video width="320" height="240" controls>
+    <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4" />
+    <source src="https://www.w3schools.com/html/mov_bbb.ogg" type="video/ogg" />
+    브라우저가 비디오 태그를 지원하지 않습니다.
+  </video>
+
+  <p>반응형 이미지 (picture):</p>
+  <picture>
+    <source media="(max-width: 600px)" srcset="https://via.placeholder.com/300" />
+    <img src="https://via.placeholder.com/600" alt="반응형 이미지" />
+  </picture>
+</section>
+
+<section>
+  <h2>5. 입력 양식 및 폼 관련 태그</h2>
+  <form action="#" method="post">
+    <p><input type="text" placeholder="텍스트 입력" /></p>
+    <p><textarea placeholder="여러 줄 입력"></textarea></p>
+    <p>
+      <select>
+        <option>선택 1</option>
+        <option>선택 2</option>
+      </select>
+    </p>
+    <fieldset>
+      <legend>라디오 버튼 그룹</legend>
+      <label><input type="radio" name="choice" value="1" /> 선택 1</label><br />
+      <label><input type="radio" name="choice" value="2" /> 선택 2</label>
+    </fieldset>
+    <p><input type="submit" value="제출" /></p>
+  </form>
+</section>
+
+<section>
+  <h2>6. 영역 관련 태그</h2>
+  <div class="block">블록 영역 (div)</div>
+  <span class="inline">인라인 영역 (span)</span>
+  <p>외부 콘텐츠 삽입 (iframe):</p>
+  <iframe width="320" height="180" src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="iframe 예시" frameborder="0" allowfullscreen></iframe>
+</section>
+
+<section>
+  <h2>7. 하이퍼링크 관련 태그</h2>
+  <p><a href="https://www.google.com" target="_blank" rel="noopener noreferrer">구글로 이동 (새 탭 열림)</a></p>
+  <p><a href="#top">페이지 상단으로 이동 (앵커)</a></p>
+</section>
+
+</body>
+</html>

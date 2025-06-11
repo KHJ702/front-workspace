@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>CSS 핵심 정리</title>
+<style>
+  /* 1. 색상 지정하기 (color) */
+  #color-ul > li:nth-child(1) { color: red; }             /* 빨강 */
+  #color-ul > li:nth-child(2) { color: #7771f4; }         /* 보라빛 파랑 */
+  #color-ul > li:nth-child(3) { color: rgb(50,100,150); } /* 진한 파랑 */
+  #color-ul > li:nth-child(4) { color: rgba(50,100,150,0.1); } /* 옅은 파랑 (투명도 10%) */
+  #color-ul > li:nth-child(5) { color: hsl(180,100%,50%); }    /* 청록 */
+  #color-ul > li:nth-child(6) { color: hsla(180,100%,50%,0.8); } /* 청록 (투명도 80%) */
+
+  /* 2. 텍스트 줄 긋기 (text-decoration) */
+  #deco-ul > li:nth-child(1) { text-decoration: underline; }    /* 밑줄 */
+  #deco-ul > li:nth-child(2) { text-decoration: line-through; }  /* 취소선 */
+  #deco-ul > li:nth-child(3) { text-decoration: overline; }      /* 윗줄 */
+  #deco-ul > li:nth-child(4) > a { text-decoration: none; }      /* 줄 없음 */
+
+  /* 3. 글자 정렬 (text-align) */
+  .text-left   { text-align: left; }    /* 왼쪽 정렬 */
+  .text-right  { text-align: right; }   /* 오른쪽 정렬 */
+  .text-center { text-align: center; }  /* 가운데 정렬 */
+  .text-justify{ text-align: justify; } /* 양쪽 정렬 */
+
+  /* 4. 줄 간격 조절 (line-height) */
+  #line-test p:last-child {
+    line-height: 30px;  /* 줄 높이 조절 */
+  }
+
+  /* 5. 텍스트 완전 중앙 정렬 */
+  #center-test {
+    height: 200px;
+    text-align: center;
+    line-height: 200px; /* 높이와 line-height 같게 */
+  }
+
+  /* 6. 글자 간격 조절 (letter-spacing) */
+  #letter-test {
+    letter-spacing: -1.5px;  /* 글자 간격 좁힘 */
+  }
+  #letter-test2 {
+    letter-spacing: 10px;    /* 글자 간격 넓힘 */
+  }
+
+  /* 7. 텍스트 그림자 (text-shadow) */
+  #shadow-test > p:nth-child(1) {
+    text-shadow: 3px 3px #bbb;         /* 기본 그림자 */
+  }
+  #shadow-test > p:nth-child(2) {
+    text-shadow: 5px 5px 5px #bbb;     /* 흐릿한 그림자 */
+  }
+  #shadow-test > p:nth-child(3) {
+    text-shadow: 0 0 10px magenta;     /* 발광 효과 */
+  }
+  #shadow-test > p:nth-child(4) {
+    /* 다중 그림자 효과 */
+    text-shadow:
+      0 0 4px #ccc,
+      0 -5px 4px #ff3,
+      2px -10px 6px #fd3,
+      -2px -15px 11px #f80,
+      2px -20px 18px #f20;
+  }
+
+  /* 8. 2D 변형 (transform) 예시 */
+  .trans-x-2d:hover { transform: translateX(100px); }
+  .trans-y-2d:hover { transform: translateY(100px); }
+  .trans-d-2d:hover { transform: translate(100px, 100px); }
+  .trans-x-scale-2d:hover { transform: scaleX(2); }
+  .trans-y-scale-2d:hover { transform: scaleY(2); }
+  .trans-scale-2d:hover { transform: scale(2); }
+  .trans-rotate:hover { transform: rotate(180deg); }
+
+  /* 9. 3D 변형 예시 */
+  .trans-3d:hover {
+    transform: perspective(300px) translate3d(100px, 100px, 0);
+  }
+  .trans-rotate-x-3d:hover {
+    transform: perspective(300px) rotateX(45deg);
+  }
+  .trans-rotate-y-3d:hover {
+    transform: perspective(300px) rotateY(-45deg);
+  }
+  .trans-rotate-z-3d:hover {
+    transform: perspective(300px) rotateZ(45deg);
+  }
+  .trans-rotate-3d:hover {
+    transform: perspective(300px) rotate3d(0.5, 0.5, 1, 45deg);
+  }
+
+  /* 10. 이미지 기본 스타일 */
+  img {
+    width: 250px;
+  }
+
+  /* 11. transition 효과 예시 */
+  .box {
+    width: 150px;
+    height: 150px;
+    background-color: red;
+    border: 1px solid black;
+    transition: 1s;
+  }
+  .test1:hover {
+    background-color: yellow; /* 1초간 배경색 변경 */
+  }
+  .test2 {
+    transition-duration: 3s;
+  }
+  .test2:hover {
+    transform: rotate(360deg);
+    background-color: pink;
+    border-radius: 50%;
+  }
+  .test3 {
+    transition-duration: 3s;
+    transition-timing-function: cubic-bezier(0.42, 0, 0.58, 1);
+  }
+  .test3:hover {
+    background-color: green;
+    transform: rotate(720deg);
+  }
+  .test4 {
+    transition-property: background-color;
+    transition-duration: 1s;
+    transition-delay: 1s;
+  }
+  .test4:hover {
+    background-color: yellow;
+    transform: translateX(100px);
+  }
+</style>
+</head>
+<body>
+
+<h2>1. 색상 지정하기</h2>
+<ul id="color-ul">
+  <li>red</li>
+  <li>#7771f4</li>
+  <li>rgb(50,100,150)</li>
+  <li>rgba(50,100,150,0.1)</li>
+  <li>hsl(180,100%,50%)</li>
+  <li>hsla(180,100%,50%,0.8)</li>
+</ul>
+
+<h2>2. 텍스트 줄 긋기</h2>
+<ul id="deco-ul">
+  <li>밑줄</li>
+  <li>취소선</li>
+  <li>윗줄</li>
+  <li><a href="#">줄 없음</a></li>
+</ul>
+
+<h2>3. 글자 정렬</h2>
+<p class="text-left">왼쪽 정렬</p>
+<p class="text-right">오른쪽 정렬</p>
+<p class="text-center">가운데 정렬</p>
+<p class="text-justify">양쪽 정렬 예시 텍스트 양쪽이 깔끔하게 맞춰집니다.</p>
+
+<h2>4. 줄 간격 조절</h2>
+<div id="line-test">
+  <p>줄 간격 기본</p>
+  <p>줄 간격 30px 적용</p>
+</div>
+
+<h2>5. 텍스트 완전 중앙 정렬</h2>
+<div id="center-test">수직 &amp; 수평 중앙 정렬된 텍스트</div>
+
+<h2>6. 글자 간격 조절</h2>
+<p id="letter-test">글자 간격 좁힘</p>
+<p id="letter-test2">글자 간격 넓힘</p>
+
+<h2>7. 텍스트 그림자</h2>
+<div id="shadow-test">
+  <p>기본 그림자</p>
+  <p>흐릿한 그림자</p>
+  <p>발광 효과</p>
+  <p>다중 그림자 효과</p>
+</div>
+
+<h2>8. 2D 변형 (호버 시)</h2>
+<div class="trans-x-2d box">X축 이동</div>
+<div class="trans-y-2d box">Y축 이동</div>
+<div class="trans-d-2d box">대각선 이동</div>
+<div class="trans-x-scale-2d box">X축 확대</div>
+<div class="trans-y-scale-2d box">Y축 확대</div>
+<div class="trans-scale-2d box">2배 확대</div>
+<div class="trans-rotate box">180도 회전</div>
+
+<h2>9. 3D 변형 (호버 시)</h2>
+<div class="trans-3d box">3D 이동</div>
+<div class="trans-rotate-x-3d box">X축 회전</div>
+<div class="trans-rotate-y-3d box">Y축 회전</div>
+<div class="trans-rotate-z-3d box">Z축 회전</div>
+<div class="trans-rotate-3d box">복합 회전</div>
+
+<h2>10. 이미지 기본 스타일</h2>
+<img src="/resources/image/manggom.jpg" alt="샘플 이미지" />
+
+<h2>11. transition 효과</h2>
+<div class="box test1">test1 (배경색 변화)</div>
+<div class="box test2">test2 (3초 회전)</div>
+<div class="box test3">test3 (커스텀 타이밍)</div>
+<div class="box test4">test4 (지연 + 배경색)</div>
+
+</body>
+</html>
