@@ -1,0 +1,301 @@
+/* 기본 리셋 및 공통 스타일 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f0f2f5;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* 1. 상단 전체 영역 (로고와 검색창 통합) */
+.top-header {
+    background-color: blue; /* 파란색 배경 */
+    color: white;
+    padding: 10px 0; /* 상하 패딩으로 높이 조절 */
+    display: flex;
+    flex-direction: column; /* 로고와 검색창을 세로로 배치 */
+    align-items: center; /* 가로 중앙 정렬 */
+    width: 100%;
+}
+
+.header-content {
+    max-width: 1200px; /* 전체 컨텐츠의 최대 너비 */
+    width: 100%;
+    display: flex;
+    flex-direction: column; /* 로고와 검색창을 세로로 정렬 */
+    align-items: center; /* 가로 중앙 정렬 */
+    padding: 0 20px;
+}
+
+.site-title { /* HTML에서 h1에 직접 .site-title 클래스 부여 */
+    font-size: 24px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    color: #fff;
+    margin-top: 5px; /* 누님이 주신 margin-top 유지 */
+    margin-bottom: 8px; /* 이전 .head의 margin-bottom과 유사하게 조정 */
+}
+
+/* 검색창 그룹 */
+.search-bar-group {
+    display: flex;
+    align-items: center; /* input과 button의 세로 정렬 */
+    width: 100%; /* 부모의 100% 사용 */
+    max-width: 600px; /* 검색창 그룹의 최대 너비 */
+    margin-bottom: 15px; /* 누님이 주신 input submit의 margin-bottom을 그룹에 적용 */
+    justify-content: center; /* 내부 요소 중앙 정렬 */
+}
+
+/* 검색창 입력 필드 */
+.search-input { /* HTML에서 input에 직접 .search-input 클래스 부여 */
+    border: 1px solid white;
+    width: 50%; /* 누님이 주신 width: 50%; 유지 */
+    height: 20px;
+    border-radius: 5px;
+    margin-right: 10px; /* 누님이 주신 margin-right: 10px; 유지 */
+    background-color: white;
+    color: #333;
+    padding: 0 5px;
+    outline: none;
+}
+
+.search-input::placeholder {
+    color: #777;
+}
+
+/* 검색 버튼 */
+.search-button { /* HTML에서 button에 직접 .search-button 클래스 부여 */
+    border: 1px solid #676767;
+    padding: 5px;
+    background-color: #676767;
+    color: white;
+    width: 40px;
+    height: 25px;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s ease;
+}
+
+.search-button:hover {
+    background-color: #555;
+}
+
+/* 2. 메인 레이아웃 컨테이너 */
+.main-layout-container {
+    max-width: 1350px;
+    margin: 20px auto;
+    padding: 0 20px 30px 20px;
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+/* 상품 목록 영역 */
+.product-list-area {
+    flex-grow: 1;
+    min-width: 940px; /* 이 min-width는 컨테이너의 최소 너비를 유지 */
+    padding: 25px;
+    padding-bottom: 45px;
+    overflow-x: hidden;
+}
+
+.section-title {
+    font-size: 26px;
+    color: #333;
+    margin-bottom: 25px;
+    text-align: center;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #eee;
+}
+
+/* ★ Grid 방식 적용된 상품 영역 - 4개 고정 */
+.product-grid {
+    display: grid; /* 그리드 컨테이너로 변경 */
+    grid-template-columns: repeat(4, 1fr); /* 4개의 열을 만들고, 각 열이 남은 공간을 균등하게 차지 */
+    gap: 20px; /* 카드 사이의 간격 */
+    /* width: 940px; 와 margin: 0 auto; 는 grid-template-columns와 gap이 처리하므로 제거 */
+    /* flex-wrap: wrap; justify-content: flex-start; 도 Grid에서 필요 없음 */
+}
+
+.product-item {
+    /* flex-shrink: 0; flexbox 속성 제거 */
+    /* width: 220px; Grid에서 1fr이 알아서 계산하므로 제거하거나 minmax 사용 */
+    /* margin-right: 20px; gap이 처리하므로 제거 */
+    /* margin-bottom: 20px; gap이 처리하므로 제거 */
+
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+
+    display: flex; /* 내부 콘텐츠를 위한 Flexbox 유지 (세로 정렬) */
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* .product-item:nth-child(4n) { margin-right: 0; } Grid의 gap이 처리하므로 제거 */
+
+.product-item .product-image {
+    background-color: #f9f9f9;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 120px;
+}
+
+.product-item img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    border-radius: 4px;
+}
+
+.product-item .product-title {
+    font-size: 15px;
+    font-weight: bold;
+    color: #444;
+    margin-bottom: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-height: 20px;
+}
+
+.product-item .product-price {
+    font-size: 20px;
+    color: #e74c3c;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+/* 장바구니 버튼 스타일 */
+.add-to-cart-btn {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+    width: 100%;
+    margin-top: auto;
+}
+
+.add-to-cart-btn:hover {
+    background-color: #2980b9;
+}
+
+/* 장바구니 사이드바 */
+.cart-sidebar {
+    flex-shrink: 0;
+    width: 300px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    padding: 25px;
+    height: 800px;
+    overflow-y: auto;
+}
+
+.cart-title {
+    font-size: 22px;
+    color: #333;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+    text-align: left;
+}
+
+.cart-total-display {
+    margin-bottom: 8px;
+    font-size: 16px;
+    color: #555;
+    text-align: right;
+    font-weight: bold;
+}
+
+/* 3. 푸터 */
+.main-footer {
+    width: 100%;
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 30px;
+    background-color: #333;
+    color: #bbb;
+    font-size: 13px;
+    border-top: 1px solid #444;
+}
+
+/* 반응형 디자인을 위한 미디어 쿼리 (추가) */
+@media (max-width: 1200px) {
+    .main-layout-container {
+        flex-direction: column; /* 화면이 좁아지면 장바구니를 아래로 */
+        align-items: center;
+        padding: 0 15px 20px 15px;
+    }
+
+    .product-list-area {
+        min-width: auto; /* 최소 너비 제약 해제 */
+        width: 100%; /* 전체 너비 사용 */
+        padding: 15px;
+    }
+
+    .product-grid {
+        grid-template-columns: repeat(3, 1fr); /* 3개씩 배치 (더 좁아지면 2개, 1개로 조정) */
+        /* width: auto; */
+    }
+
+    .cart-sidebar {
+        width: 100%; /* 장바구니도 전체 너비 사용 */
+        max-width: 600px; /* 장바구니도 너무 커지지 않도록 최대 너비 설정 */
+        height: auto; /* 높이 유연하게 조절 */
+    }
+}
+
+@media (max-width: 900px) {
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2개씩 배치 */
+    }
+}
+
+@media (max-width: 600px) {
+    .header-content {
+        padding: 0 10px;
+    }
+    .search-bar-group {
+        flex-direction: column; /* 모바일에서는 검색창 세로 정렬 */
+        align-items: stretch; /* 늘려서 가득 채우도록 */
+    }
+    .search-input {
+        width: 100%; /* 전체 너비 사용 */
+        margin-right: 0;
+        margin-bottom: 10px; /* 검색 버튼과 간격 */
+    }
+    .search-button {
+        width: 100%; /* 전체 너비 사용 */
+        height: 35px; /* 버튼 높이 키움 */
+    }
+
+    .product-grid {
+        grid-template-columns: 1fr; /* 1개씩 배치 */
+    }
+}

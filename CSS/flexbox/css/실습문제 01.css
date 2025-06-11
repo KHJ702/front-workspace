@@ -1,0 +1,139 @@
+/* 기본 설정 */
+html {
+    box-sizing: border-box; /* ★ 추가: 모든 요소의 패딩과 보더가 너비에 포함되도록 설정 */
+}
+*, *::before, *::after {
+    box-sizing: inherit; /* ★ 추가: 상속 */
+}
+body {
+    margin: 0;
+    font-family: Arial, sans-serif; /* 기본 폰트 설정 */
+}
+
+.wrapper {    
+    min-height: 100vh;
+    border: 2px solid #333;
+    background-color: #1a1a1a; /* 푸터와 헤더 사이의 배경 */
+    display: flex;
+    flex-direction: column; /* 자식 요소들을 세로로 정렬 (header, content, footer) */
+}
+
+/* 헤더와 푸터 */
+.header,
+.footer {
+    background-color: #222;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    border: 2px solid #444;
+    flex-shrink: 0; /* 내용이 많아져도 헤더/푸터는 줄어들지 않도록 */
+}
+
+.header h1 {
+    margin: 0; /* h1의 기본 마진 제거 */
+}
+
+.footer p {
+    margin: 0; /* p 태그의 기본 마진 제거 */
+}
+
+/* 메인 콘텐츠 영역 (사이드바 + 메인) */
+.content {
+    display: flex; /* 사이드바와 메인을 가로로 배치 */
+    flex-grow: 1; /* 남은 공간을 content가 모두 차지하도록 */
+    background-color: #f0f0f0; /* 콘텐츠 영역의 배경색 (회색) */
+    border-left: 2px solid #444; /* wrapper의 border에 맞춰 추가 */
+    border-right: 2px solid #444; /* wrapper의 border에 맞춰 추가 */
+}
+
+/* 사이드바 */
+.sidebar {
+    flex-shrink: 0; /* 사이드바는 너비가 고정되도록 */
+    width: 150px; /* 사이드바 고정 너비 */
+    background-color: #ddd; /* 사이드바 배경색 */
+    padding: 20px;
+    border-right: 2px solid #bbb; /* 메인 영역과의 구분선 */
+    display: flex;
+    flex-direction: column; /* 메뉴 항목들을 세로로 정렬 */
+    gap: 10px; /* 메뉴 항목 간 간격 */
+}
+
+.sidebar nav ul {
+    list-style: none; /* 목록 마커 제거 */
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar nav li {
+    margin-bottom: 10px; /* 메뉴 항목 간 간격 */
+}
+
+.sidebar nav a {
+    display: block; /* 링크 전체 영역 클릭 가능하게 */
+    background-color: #ccc; /* 메뉴 버튼 배경색 */
+    color: #333;
+    padding: 8px 15px;
+    border-radius: 5px;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+.sidebar nav a:hover {
+    background-color: #bbb;
+}
+
+/* 메인 게시글 영역 */
+.main {
+    flex-grow: 1; /* 남은 공간을 메인 영역이 모두 차지하도록 */
+    padding: 20px; /* 좌우 패딩 유지 */
+    display: flex;
+    flex-wrap: wrap; /* 카드들이 다음 줄로 넘어갈 수 있도록 */
+    gap: 20px; /* 카드 사이의 간격 */
+    justify-content: flex-start; /* 카드들을 왼쪽부터 정렬 */
+    align-content: flex-start; /* 세로 정렬 시 콘텐츠를 위로 정렬 */
+    overflow-y: auto; /* 내용이 넘칠 경우 스크롤바 생성 */
+}
+
+/* 카드 스타일 */
+.card {
+    /* ★ 수정: calc() 재조정. main의 padding(좌우 20px씩 총 40px)과 gap(20px) 고려 */
+    /* (100% - total_gap - total_padding) / 2 */
+    /* main의 가용 너비 = 100% - (main의 좌우 padding) */
+    /* flex-basis: calc((100% - 20px) / 2); (만약 main padding이 없다면) */
+    /* 현재 main padding이 20px이므로, main의 실제 가용 너비는 100% - (20px * 2) = 100% - 40px */
+    /* 카드 2개와 gap 1개 (20px)가 들어가야 하므로: */
+    /* 각 카드의 너비 = (메인 가용 너비 - gap) / 2 = ( (100% - 40px) - 20px ) / 2 */
+    /* = (100% - 60px) / 2 = 50% - 30px */
+    flex: 0 0 calc(50% - 30px); /* ★ 핵심: 50%에서 패딩+간격을 고려한 값 */
+    min-width: 250px; /* 카드의 최소 너비 유지 (이 값이 너무 크면 1개만 나올 수 있음) */
+    background-color: #ffffff;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    border: 2px solid #bbb;
+    text-align: center;
+}
+
+/* 반응형을 위한 미디어 쿼리 */
+@media (max-width: 768px) { /* 태블릿/모바일 크기에서 */
+    .content {
+        flex-direction: column; /* 화면이 작아지면 사이드바를 위로 */
+        align-items: center; /* 콘텐츠 전체를 중앙 정렬 (선택 사항) */
+    }
+
+    .sidebar {
+        width: 100%; /* 사이드바 너비를 100%로 */
+        border-right: none;
+        border-bottom: 2px solid #bbb; /* 하단 경계선 추가 */
+    }
+
+    .main {
+        padding: 15px;
+        justify-content: center; /* 한 줄에 하나의 카드만 중앙 정렬 */
+    }
+
+    .card {
+        flex: 0 0 100%; /* 한 줄에 하나의 카드만 */
+        max-width: 400px; /* 너무 커지지 않도록 최대 너비 설정 */
+        min-width: unset; /* 모바일에서는 min-width 제약 해제 */
+    }
+}
