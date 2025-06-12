@@ -82,6 +82,19 @@ body {
     background-color: #bbb;
 }
 
+/* ★★★ 부모 요소 (예: .main) ★★★ */
+.main {
+    display: flex;
+    flex-wrap: wrap; /* 카드가 넘치면 다음 줄로 */
+    justify-content: space-between; /* 카드들이 양 끝에 붙고 사이 공간 분배 */
+    /* 또는 justify-content: center; */ /* 카드들이 가운데 정렬되도록 */
+
+    /* 기존 main의 padding(좌우 20px)과 카드 사이의 gap(20px)을 고려한 트릭 */
+    /* 각 카드의 좌우 margin을 10px로 가정하고, 이를 상쇄하기 위해 부모에 음수 margin */
+    margin: 0 -10px; /* ★ 핵심: 자식의 좌우 마진을 상쇄하여 전체 너비 조절 */
+    padding: 20px; /* main의 기존 패딩 유지 */
+}
+
 /* 메인 게시글 영역 */
 .main {
     flex-grow: 1; /* 남은 공간을 메인 영역이 모두 차지하도록 */
@@ -92,6 +105,23 @@ body {
     justify-content: flex-start; /* 카드들을 왼쪽부터 정렬 */
     align-content: flex-start; /* 세로 정렬 시 콘텐츠를 위로 정렬 */
     overflow-y: auto; /* 내용이 넘칠 경우 스크롤바 생성 */
+}
+
+/* ★★★ 카드 요소 (.card) ★★★ */
+.card {
+    flex: 0 0 50%; /* ★ 핵심: 50%로 설정. calc() 대신 간단하게 절반 차지 */
+    /* flex-grow: 0; flex-shrink: 0; flex-basis: 50%; 를 줄인 표현 */
+
+    min-width: 250px; /* 카드의 최소 너비 유지 */
+
+    /* 카드 사이의 간격은 margin으로 처리 */
+    padding: 20px; /* 카드의 내부 패딩 */
+    margin: 0 10px 20px; /* 상하좌우 마진: 상(0) 좌우(10px) 하(20px) - 좌우 10px이 gap 역할 */
+
+    background-color: #ffffff;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    border: 2px solid #bbb;
+    text-align: center;
 }
 
 /* 카드 스타일 */

@@ -17,3 +17,110 @@ div{
     background-color: red !important;
 }
 
+
+/*/
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KH Shopping Mall</title>
+    <link rel="stylesheet" href="./ys_1New.css">
+</head>
+<body>
+
+    <header class="top-header">
+        <div class="header-content">
+            <h1 class="site-title">KH Shopping Mall</h1>
+            <div class="search-bar-group">
+                <input type="text" placeholder="상품명 검색" class="search-input" />
+                <button type="submit" class="search-button">검색</button>
+            </div>
+        </div>
+    </header>
+
+    <div class="main-layout-container">
+        <div class="product-list-area">
+            <h4 class="section-title">상품 목록</h4>
+            <div class="product-grid">
+                <div class="product-item">
+                    <div class="product-image">
+                        <img src="./resources/pyo (1).jpg" alt="Do it ! 자바 프로그래밍 입문">
+                    </div>
+                    <div class="product-title">Do it! 자바 프로그래밍 입문</div>
+                    <div class="product-price">15,500원</div>
+                    <button class="add-to-cart-btn">장바구니 담기</button>
+                </div>
+                <div class="product-item">
+                    <div class="product-image">
+                        <img src="./resources/pyo (2).jpg" alt="Do it ! 오라클로 배우는 프로그래밍 입문">
+                    </div>
+                    <div class="product-title">Do it! 오라클로 배우는 데이터베이스 입문</div>
+                    <div class="product-price">20,000원</div>
+                    <button class="add-to-cart-btn">장바구니 담기</button>
+                </div>
+                <div class="product-item">
+                    <div class="product-image">
+                        <img src="./resources/pyo (3).jpg" alt="Do it ! 리엑트 네이티브앱 모던 웹 개발">
+                    </div>
+                    <div class="product-title">Do it! 리액트 프로그래밍의 정석</div>
+                    <div class="product-price">41,200원</div>
+                    <button class="add-to-cart-btn">장바구니 담기</button>
+                </div>
+                <div class="product-item">
+                    <div class="product-image">
+                        <img src="./resources/pyo (4).jpg" alt="Do it ! HTML+CSS+자바스크립트 개발">
+                    </div>
+                    <div class="product-title">Do it! HTML+CSS+자바스크립트 웹 표준의 정석</div>
+                    <div class="product-price">30,000원</div>
+                    <button class="add-to-cart-btn">장바구니 담기</button>
+                </div>
+                <div class="product-item">
+                    <div class="product-image">
+                        <img src="./resources/pyo (5).jpg" alt="Do it ! JSP 웹 프로그래밍과 스프링 프레임워크 개발">
+                    </div>
+                    <div class="product-title">JSP 웹 프로그래밍과 스프링 프레임워크</div>
+                    <div class="product-price">27,000원</div>
+                    <button class="add-to-cart-btn">장바구니 담기</button>
+                </div>
+                <div class="product-item">
+                    <div class="product-image">
+                        <img src="./resources/pyo (6).jpg" alt="Do it ! 리엑트 200제">
+                    </div>
+                    <div class="product-title">리액트 200제</div>
+                    <div class="product-price">22,500원</div>
+                    <button class="add-to-cart-btn">장바구니 담기</button>
+                </div>
+                <div class="product-item">
+                    <div class="product-image">
+                        <img src="./resources/pyo (7).jpg" alt="Do it ! 자바 스크립트 입문">
+                    </div>
+                    <div class="product-title">Do it! 자바스크립트 입문</div>
+                    <div class="product-price">16,700원</div>
+                    <button class="add-to-cart-btn">장바구니 담기</button>
+                </div>
+                <div class="product-item">
+                    <div class="product-image">
+                        <img src="./resources/pyo (8).jpg" alt="Do it ! Node.js 프로그래밍 입ge">
+                    </div>
+                    <div class="product-title">Node.js 프로그래밍 입문</div>
+                    <div class="product-price">35,400원</div>
+                    <button class="add-to-cart-btn">장바구니 담기</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="cart-sidebar">
+            <h2 class="cart-title">장바구니</h2>
+            <div class="cart-total-display">
+                Total: 0원
+            </div>
+        </div>
+    </div>
+
+    <footer class="main-footer">
+        <p>&copy; 2024 KH Shopping Mall All rights reserved.</p>
+    </footer>
+
+</body>
+</html>

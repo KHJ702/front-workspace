@@ -19,3 +19,62 @@
     background-color: yellow;
     border: 3px solid black;
 }
+
+
+/***********/
+.head{
+    text-align: center;
+    color : white;
+    display: block;
+    background-color: blue;
+    padding: 1px;
+    margin-bottom: 8px;
+}
+input[type="text"]{
+    border: 1px solid white;
+    width: 50%;
+    height: 20px;
+    border-radius: 5px;
+    text-shadow: 0px 0px;
+    margin-right: 10px;
+}
+
+input[type="submit"]{
+    border: 1px solid #676767;
+    padding : 5px;
+    background-color: #676767;
+    color : white;
+    width: 40px;
+    height: 25px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    line-height: 10px;
+}
+img{
+    width: 125px;
+    height: 150px;
+}
+.book-container{
+    display: block;
+    background-color: #ddd;
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;   
+}
+.body{
+    text-align: center; 
+    display: block;
+    background-color: #ddd;
+    padding: 1px;
+    margin-bottom: 0px;
+}
+
+.item{
+    margin: 8px;
+}
+
+.cart{
+    display: flex;
+    float:right
+}
+
