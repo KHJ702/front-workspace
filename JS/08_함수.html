@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Function</title>
+</head>
+<body>
+    <h1>Function</h1>
+    <h2>함수 작성</h2>
+    <script>
+        // 함수 선언식 (호이스팅O)
+        function foo(){
+
+        }
+        // bar(); // <- 호이스팅X 그래서 에러 발생.
+        // 함수 표현식 (호이스팅X //함수를 값으로써 표현)
+        const bar = function /*이자리에 이름이 들어가도 되는데 의미 없어서 걍 사용X -> 그래서 보통 익명함수로 사용*/(){
+
+        };
+        foo();
+        bar();
+        /*
+            1회용 함수를 작성할 때 사용하는 방법
+            IIFE(Immediatley Invoked Function Expression)
+            (function(){}()) // (함수를 작성하고){}(함수를 바로실행) <- 일회용 함수
+        */
+       (function (){
+        console.log("hello world");
+       })();
+       // 둘다 가능. 마지막 괄호 -> (함수 즉시 실행)
+        (function (){
+        console.log("goodbye world");
+       }());
+
+       (function(name){
+        console.log(name+"님 안녕하세용");
+       })('khj'); // (매개변수에 값을 넣음)
+    </script>
+    
+    <h2>매개변수 | 매개인자</h2>
+    <input type="button" value="실행" onclick="test1(1, 2, 3); test1('안','녕')"> <!-- 함수가 1개만 저장할 뿐 많아도 상관 X-->
+    <input type="button" value="실행" onclick="test2();">
+    <script>
+        /*
+            매개변수(parameter)
+             - 함수 선언시 매개인자가 담길 공간
+            
+            매개인자(argument)
+             - 함수 호출시 전달할 값.
+
+            자바스크립트는 매개변수와 매개인자의 개수가 달라도 실행에 문제 없다.
+        */
+       function test1(x){
+            console.log("x = " + x);
+
+            // 매개인자를 저장하는 arguments 배열 확인
+            console.log(arguments); // <- 유사배열(Array 제외 전부)이지만 배열처럼 사용가능\
+                        // (존재하지만 보이지 않는 함수인자)
+            for(let argument of arguments){
+                console.log(argument);
+            }
+       }
+
+       function test2(){
+            add(1,2,3,4,5,6,7,8,9,10); // 55
+            add(12.34,45.67); // 58.01
+            add('a','b','c','d'); // abcd
+            // 매개인자의 값을 모두 합산하여 출력하는 add메서드
+            // 작성
+        }
+       function add(){
+            let sum = typeof arguments [0] == 'number' ? 0 : '';
+            for(let i of arguments){
+                sum+= i;
+            }
+            console.log(sum);
+        }
+    </script>
+
+    <h2>함수 특징</h2>
+    <input type="button" value="return value" onclick="test3();">
+    <input type="button" value="중첩 함수" onclick="test4(10, 5);">
+    <script>
+        function test3(){
+            console.log(foo());
+        }
+        function foo(){
+            //return 100;
+            //return undefined;
+            // 함수의 return문이 없다면 undefined를 반환.
+        }
+
+        function test4(a,b){
+        
+            const power = function (n){
+                return n ** 2; // 2제곱. (** <- 제곱연산)
+            };
+            c = Math.sqrt(power(a)+power(b));
+            console.log(c);
+        }
+    </script>
+
+    <h2>함수 고급</h2>
+    <input type="button" value="매개인자" onclick="test5();">
+    <input type="button" value="리턴값" onclick="test6();">
+    <input type="button" value="999" onclick="(soo())(999);">
+
+    <script>
+            /*
+                자바스크립트에서 함수는 하나의 값으로 취급된다.
+                 - 변수에 대입할 수 있고
+                 - 함수의 인자로 전달될 수 있고
+                 - 함수의 반환값으로 사용될 수 있음을 의미한다.
+            */        
+        function test5(){
+            // 함수를 값으로써 전달하기
+            exec(function(n){
+                console.log(n+1 + ": hello, "+names[n])
+            });
+        }
+        var names = [
+            'html', 'css', 'js', 'jquery', 'java',
+            'oracle', 'mybatis', 'maven', 'lombok', 'spring'
+        ];
+
+        function exec(fn){
+            // 1: hello, html
+            // 2: hello, css
+        
+        for(var i = 0; i < names.length; i++) {
+            fn(i); // 콜백함수 
+            }
+        }
+
+        function test6(){
+            let a = 1;
+            // 리턴값으로 함수를 반환하기
+            const hello = returnFunction('say');
+            hello('js');
+            returnFunction('good bye')('js');
+
+            /* (function(name){
+                console.log('good bye'+' '+name);
+            })('js')
+            // 왼쪽의 함수가 호출될때 매개변수로 js가 들어감 (위쪽 보기)
+            // 그러니까 밑의 return function(name)<- name에 js가 들어감*/
+        
+        }
+
+        function returnFunction(say){
+            let b = 2;
+            return function(name){
+                console.log(say+' '+name);
+                // 여기서 say는 지역도 전역도 아님 (closure라는 스코프와 연관있음.)
+            }
+        }
+        //(soo())(999) 
+        function soo() {//<- IIFE는 X, 그러나 코드가 비슷해서...
+            return function(){
+                console.log(n);
+            }
+        // 만약에 하려면... (function(n){console.log(n);}(999));
+        }
+    </script>
+    
+    <h2>Closure</h2>
+    <input type="button" value="globalCounter" onclick="test7();">
+    <input type="button" value="closureCounter" onclick="test8();">
+
+    <script>
+        // var cnt = 0; // 키워드 일 경우 window script로 들어감. 
+        let cnt = 0; // global(script) scope (둘다 전역 스코프. global은 윈도우 속성을 가지고 있음)
+        function test7(){
+            // local scope
+            // this <- window
+            // debugger;
+            console.log("global : "+ ++cnt);
+            // 사실상 글로벌과 같은 부분
+        }
+
+        /*
+            클로져(Closure)
+             - 중첩함수에서 하위함수가 상위함수의 변수를 참조할 때 발생하는 스코프
+             - 하위함수에서 상위함수의 변수값을 참조하는 경우
+               하위함수의 closure스코프에 변수값을 미리 추가해둔다.
+             - 이로인해 스택에서 상위함수의 메모리가 제거되더라도,
+               상위함수의 변수를 closure스코프에서 그대로 가져다 사용할 수 있게 된다.  
+        */
+       function funcY() {
+           let num = 100;
+           console.dir(funcZ);
+           function funcZ(){
+                //debugger;
+                console.log('num=', num);
+            }
+            return funcZ;
+       }
+       const myFn = funcY();
+       // myFn();
+
+       function makeClosureCounter(){
+        let cnt = 0;
+        return function(){    
+            console.log("closureScope : " + ++cnt);
+       }
+    }
+        const test8 = makeClosureCounter();
+        const test9 = makeClosureCounter(); 
+        // test9 설정(등록) 찾아보기.
+    </script>
+
+
+</body>
+</html>
