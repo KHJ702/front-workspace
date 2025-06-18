@@ -16,7 +16,13 @@
 	<button onclick="addFunc();">실행</button>
 	<script>
 		function mkAddFunc (){
-
+			let num = 0;
+			return function(){
+				const myadder = document.querySelector("#myadder");
+				// num += Number(myadder.value);
+				num+= myadder.value * 1;
+				console.log(num);
+			}
 		} 
 
 		var addFunc = mkAddFunc();
