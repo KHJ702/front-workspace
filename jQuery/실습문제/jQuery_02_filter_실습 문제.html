@@ -13,7 +13,12 @@
     <script>
         //체크한 체크박스의 value값들을 콘솔창에 출력
         function checkBtn(){
-         
+            const $check = $(":checkbox").filter(":checked");
+            // jQurey 객체는 $를 붙인다 ex) $check (네이밍 규칙)
+            console.log($check);
+            for(let i = 0; i<$check.length; i++){
+            console.log($check[i].value); // 또는 eq[i].val()
+            }
         }
     </script>
         
@@ -30,6 +35,8 @@
     <script>
         //선택한 select박스의 value값을 콘솔창에 출력
         function selectBtn(){
+            const $select = $("select option").filter("option:selected");
+            console.log($select.val());
         }
     </script>
         

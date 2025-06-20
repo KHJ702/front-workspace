@@ -71,7 +71,60 @@
             $("h4")[2].innerText = "js객체";
 
         });
+
     </script>
+    <div class="wrapper">
+    <p>안녕1</p>
+    <p>안녕2</p>
+    <p>안녕3</p>
+    <p>안녕4</p>
+    <p>안녕5</p>
+    <p>안녕6</p>
+    <p><a href="#">안녕7</a></p>
+    <p>안녕8</p>
+    <p>안녕9</p>
+    <p>안녕10</p>
+  </div>
+
+  <input type="button" value=":eq()" onclick="test2();">
+  <input type="button" value=":gt() :lt()" onclick="test3();">
+  <input type="button" value=":contains()" onclick="test4();">
+  <input type="button" value=":has()" onclick="test5();">
+  <input type="button" value=":not()" onclick="test6();">
+
+  <script>
+        function test2() {
+            $(".wrapper p:eq(2)") // wrapper의 p태그 후손들중에 2번 인덱스에 있는 친구
+            .css("color","deeppink");
+        }
+
+        function test3() {
+            // gt(index) lt(index)
+            $(".wrapper p:gt(2)")
+            .css("font-size","2em");
+
+            $(".wrapper p:lt(2)")
+            .css("font-size","2em");
+        }
+
+        function test4() {
+            // :contains()
+            //  - 특정문자를 가진 태그를 조회
+            $(".wrapper p:contains('안녕8')") //""안에 ""못넣음.
+            .css('text-decoration','line-through');
+        }
+        
+        function test5() {
+            // :has(selector) //매개변수로 selector가 들어감 (이 선택자를 가지고 있는 요소 선택)
+                $(".wrapper p:has(a)").css("background","pink");
+        }
+
+        function test6() {
+            // :not(선택자)
+            $(".wrapper p:not(:first-child)")
+            .css("color","green");
+        }
+  </script>
     
 <br><br><br><br><br><br><br><br><br><br>    
 </body>
