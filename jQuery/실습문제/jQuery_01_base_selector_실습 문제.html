@@ -54,34 +54,42 @@
     <h2>Selector3</h2>
     <script>
         function clear(){
-            $("table *").removeAttr("style");
+            $("table *").removeAttr("style");  // 테이블 내의 모든 요소에서 인라인 스타일을 제거
         }
+
         function click1(){
-            clear();
-            $("table tr")
-            .eq(1)
-            .children()
-            .eq(0)
-            .siblings().css("color","yellow");
+           
+            $("table tr")           // 테이블에서 두 번째 <tr>을 선택
+            .eq(1)                  // 두 번째 <tr> 선택 (인덱스는 0부터 시작)
+            .children()             // 선택된 <tr>의 자식 요소들(즉, <td>들)을 선택
+            .eq(0)                  // 자식 요소 중 첫 번째 <td> 선택
+            .siblings()             // 선택된 첫 번째 <td>의 형제들(나머지 <td>)을 선택                       
+            .css("color","yellow"); // 선택된 형제 <td>들의 색을 노란색으로 변경
 
+            // 두 번째 <tr>에서 첫 번째 <td>를 선택하고, 나머지 형제들(<td>)의 색을 노란색으로 변경
             $("table tr:nth-of-type(2) > td:first-of-type")
-            .siblings().css("color","yellow");
-
+            .siblings()             // 첫 번째 <td>의 형제 <td> 선택
+            .css("color","yellow");
+            
             // clear();
             // $("td:contains(10)").css("color","yellow");
         }
+
         function click2(){
-            clear();
-            $("td:contains(20)").css("color","yellow");
+            clear();         
+            $("td:contains(20)").css("color","yellow"); // '20'이라는 텍스트를 포함한 모든 <td> 선택
         }
+
         function click3(){
             clear();
-            $("td:eq(1),td:eq(4)").css("color","yellow");
-             
+            $("td:eq(1),td:eq(4)").css("color","yellow"); // 첫 번째 <td>와 다섯 번째 <td>를 선택             
         }
+
         function click4(){
             clear();
-            $("td:nth-of-type(3):not(tr:last-child td)").css("color","yellow");
+
+            // 마지막 <tr>을 제외한 세 번째 <td>를 선택
+            $("td:nth-of-type(3):not(tr:last-child td)").css("color","yellow"); 
             //$("td:eq(2),td:eq(5)").css("color","yellow");
         }
     

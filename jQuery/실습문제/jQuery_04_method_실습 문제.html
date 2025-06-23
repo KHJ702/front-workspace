@@ -12,6 +12,27 @@
     <h2>Method1</h2>
     <script>
         function add(){
+
+            // 입력된 값을 가져오는 jQuery 선택자
+            const title = $(":text[name=title]");
+            const content = $(":text[name=content]");
+            const owner = $(":text[name=owner]");
+
+             // 새로운 <tr> 요소를 생성
+            const tr = $("<tr></tr>");
+
+            // 각 입력 필드의 값을 가져와 <td>에 추가
+            const first = $("<td></td>").html(title.val());  // title의 값을 가져와 td에 넣기
+            const second = $("<td></td>").html(content.val()); // content의 값을 가져와 td에 넣기 
+            const third = $("<td></td>").html(pwner.val()); // owner의 값을 가져와 td에 넣기
+
+            // <tr>에 <td>들 추가하고 <table>에 삽입
+            tr.append(first, second, third).appendTo("table");
+            
+            // 입력 필드 초기화 (빈 문자열로 설정)
+            title.val("");
+            content.val("");
+            owner.val("");
         }
         </script>
     
@@ -31,10 +52,20 @@
     <script>
         var idx = 0;
         function addFile(){
+
+            // 기존의 파일 입력 필드를 복제하여 새로운 파일 입력 필드 추가
+            $("div").append($(":file").clone()); // 현재 존재하는 파일 입력 필드를 복제
+
+            // 파일 입력 필드의 name 속성을 "f"와 idx 값으로 설정
+            file.attr("name","f"+ ++idx); // 복제된 파일 입력 필드에 이름을 설정 (f0, f1, f2,...)
+
+            // 복제한 파일 입력 필드를 새로운 div에 추가
+            $("div").not(".clone").append($("<div class = 'clone'></div>")).append(file); // .clone 클래스를 가진 div 안에 추가
             
         }
         function delFile(){
             //input:file의 최소개수는 1개로 제한.
+            $(":file").length > 1 && $(".clone").last().remove() && --idx; // 파일 입력 필드가 1개 이상일 때, 마지막 복제된 필드를 삭제하고 idx 감소
         }
         </script>
     

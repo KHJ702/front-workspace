@@ -13,11 +13,15 @@
     <script>
         //체크한 체크박스의 value값들을 콘솔창에 출력
         function checkBtn(){
-            const $check = $(":checkbox").filter(":checked");
-            // jQurey 객체는 $를 붙인다 ex) $check (네이밍 규칙)
-            console.log($check);
-            for(let i = 0; i<$check.length; i++){
-            console.log($check[i].value); // 또는 eq[i].val()
+            // 선택된 체크박스를 필터링하여 $check 변수에 저장
+            const $check = $(":checkbox").filter(":checked"); 
+             // jQuery 객체는 $를 붙여서 네이밍 (예: $check)
+
+            console.log($check); // 선택된 체크박스들의 jQuery 객체를 콘솔에 출력
+
+            for(let i = 0; i<$check.length; i++){ // 선택된 체크박스들의 value 값을 순차적으로 출력
+            console.log($check[i].value); // 각 체크박스의 value 속성 출력
+            // 또는 eq[i].val()
             }
         }
     </script>
@@ -35,7 +39,10 @@
     <script>
         //선택한 select박스의 value값을 콘솔창에 출력
         function selectBtn(){
+            // 선택된 <option>을 필터링하여 선택된 값 가져오기
             const $select = $("select option").filter("option:selected");
+
+            // 선택된 <option>의 value 값을 콘솔에 출력
             console.log($select.val());
         }
     </script>

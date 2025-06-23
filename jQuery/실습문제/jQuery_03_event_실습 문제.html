@@ -11,6 +11,20 @@
 <body>
     <h2>Event 1</h2>
     <script>
+        $(function(){
+            // 셀렉트 박스에서 선택이 변경될 때 실행되는 함수
+            $("select").change(function(){
+                //selected
+                // const option = $(":selected");
+                 // 선택된 <option>을 필터링하여 가져옴
+                const option = $(this).children().filter(":selected");
+
+                // 선택된 option의 HTML 내용을 getter 방식으로 가져옴
+                $("selNum").html(option.html());
+                // option의 HTML 내용("1번", "2번" 등)을 #selNum에 설정
+                // #selNum 요소에 option의 HTML 내용을 setter 방식으로 설정
+            });
+        });
         
     </script>
     
@@ -27,6 +41,21 @@
 
     <h2>Event 2</h2>
     <script>
+        $(function(){
+            // 첫 번째 행을 제외한 모든 <tr> 요소 클릭 시 이벤트 처리
+            $("#event2 tr").not(":first")
+            .click(function(){
+                // 클릭된 행의 자식 <td> 요소들을 가져옴
+                const tds = $(this).children();
+
+                // 선택된 행의 <td> 값들을 각각 출력
+                $("#s1").html(tds.eq(0).html()); // 번호
+                $("#s2").html(tds.eq(1).html()); // 제목
+                $("#s3").html(tds.eq(2).html()); // 조회수
+                $("#s4").html(tds.eq(3).html()); // 작성일자
+            });
+        });
+
     
     </script>
     
@@ -46,6 +75,28 @@
     
     <h2>Event 3</h2>
     <script>
+        $(function(){
+            // 첫 번째 행을 제외한 모든 <tr> 요소 클릭 시 이벤트 처리
+            $("#event3 tr").not(":first")
+
+            .click(function(){
+                // 다른 행들은 배경색을 제거                
+                $(this).siblings().css("background","");
+
+                // 클릭된 행의 배경색을 빨간색으로 변경
+                $(this).css("background","red");
+
+                // 클릭된 행의 자식 <td> 요소들을 가져옴
+                const tds = $(this).children();
+
+                // 선택된 행의 <td> 값들을 각각 출력
+                $("#s5").html(tds.eq(0).html()); // 번호
+                $("#s6").html(tds.eq(1).html()); // 제목
+                $("#s7").html(tds.eq(2).html()); // 조회수
+                $("#s8").html(tds.eq(3).html()); // 작성일자
+            });
+        });
+        
     
     </script>
 
