@@ -3,8 +3,11 @@
 //import ArrayDataBinding from './01.react_basic/03.ArrayBinding';
 //import ObjectDataBindig from './01.react_basic/04.ObjectBinding';
 //import ModuleCSS from './01.react_basic/05.ModuleCss';
+// import UseEffectHook from './02.react_advanced/01_UseEffectHook';
+// import OptimizationHook from './02.react_advanced/03_OptimizationHook';
+import AxiosGet from './02.react_advanced/04_Axios_GET';
 import './App.css'
-import BoardContainer from './practice/2. BoardConainer';
+//import BoardContainer from './practice/2. BoardConainer';
 
 function App() {
   return (
@@ -14,8 +17,11 @@ function App() {
       {/* <ParentComponent/> */}
       {/* <ArrayDataBinding/> */}
       {/* <ObjectDataBindig/> */}
-      {/* <ModuleCSS/> */}
-      <BoardContainer/>
+      {/* <ModuleCSS/> */} 
+      {/* <UseEffectHook/> */}
+      {/* <OptimizationHook/> */}
+      {/* <signUpForm/> */}
+      <AxiosGet/>
     </>
   )
 }

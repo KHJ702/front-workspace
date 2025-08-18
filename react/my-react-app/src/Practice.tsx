@@ -1,6 +1,7 @@
 import './App.css';
-import UserInfoContainer from './practice/01.PropsPractice';
-import BoardContainer from './practice/2. BoardConainer';
+import AutoSaveEditor from './practice/04.UseEffectPractice';
+//import UserInfoContainer from './practice/01.PropsPractice';
+//import BoardContainer from './practice/2. BoardConainer';
 
 function Practice() {
 
@@ -12,8 +13,9 @@ function Practice() {
             </div>
         </div>
         {/* 여기 아래에 실습문제들 추가. */}
-        <UserInfoContainer/>
-        <BoardContainer/>
+        {/* <UserInfoContainer/> */}
+        {/* <BoardContainer/> */}
+        {<AutoSaveEditor/>}
         </>
     )
 }
