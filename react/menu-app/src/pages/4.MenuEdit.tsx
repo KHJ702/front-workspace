@@ -1,10 +1,37 @@
+import { useQuery } from "@tanstack/react-query";
 import RadioGroup from "../components/RadioGroup";
+import { useNavigate, useParams } from "react-router-dom";
+import { initMenu, type Menu, type MenuUpdate } from "../type/menu";
+import axios from "axios";
+import useInput from "../hooks/useInput";
+import { useEffect } from "react";
 
 const MenuEdit = () => {
     // #1. 메뉴 수정 기능 구현   
     // 요구사항
+    const {id} = useParams();
+    const navigate = useNavigate();
+
     // 1. 현재 메뉴 정보에 맞는 데이터를 서버에서 읽어온 후 , 폼에 바인딩한다.(useEffect+useQuery 사용)
-    // 2. 읽어온 데이터가 없는 경우 목록 페이지로 이동시키고 "존재하지 않는 메뉴입니다." 메세지를 출력한다. 
+    const {data, isLoading, isError, error} = useQuery<Menu>({
+        queryKey : ['menu',id],
+        queryFn : () => axios.get("http://localhost:8081/api/menus/"+id).then(res => res.data),
+        staleTime : 1000 * 60
+    })
+
+    if(isError){
+        navigate("/menus",{state:{flash:'존재하지 않는 메뉴입니다.'}});
+        return;
+    }
+    const [newMenus, handleInputChange, resetMenu, setNewMenus] = useInput<MenuUpdate>(initMenu);
+    
+    useEffect(() => {
+        if(data){
+            setNewMenus(data);
+        }
+    },[data])
+    
+    // 2. 읽어온 데이터가 없는 경우 목록 페이지로 이동시키고 "존재하지 않는 메뉴입니다." 메세지를 출력한다. (alert)
     // 3. useInput훅을 사용하여 폼상태를 관리한다.
     // 4. 수정 버튼 클릭시 다음 내용에 대한 유효성 검사를 진행한다.
     //    - 모든 필드는 반드시 입력되어야 한다. 
@@ -18,22 +45,23 @@ const MenuEdit = () => {
     // 9. 수정 실패시 에러 메세지를 출력한다.
     //    - <div className="alert alert-danger">에러메세지</div>  
 
+
     return (
         <>
             <div className="menu-test">
                 <h4>메뉴 수정하기(PUT)</h4>
                 <form id="menuEnrollFrm" >
-                    <input type="text" name="restaurant" placeholder="음식점" className="form-control"  />
-                    <input type="text" name="name" placeholder="메뉴" className="form-control"  />
-                    <input type="number" name="price" placeholder="가격" className="form-control"/>
+                    <input type="text" value={newMenus.restaurant} onChange={handleInputChange} name="restaurant" placeholder="음식점" className="form-control"  />
+                    <input type="text" value={newMenus.name} onChange={handleInputChange} name="name" placeholder="메뉴" className="form-control"  />
+                    <input type="number" value={newMenus.price} onChange={handleInputChange} name="price" placeholder="가격" className="form-control"/>
                     <div className="form-check form-check-inline">
-                        <RadioGroup id="get-kr" value="kr" name="type"  label="한식" />
-                        <RadioGroup id="get-ch" value="ch" name="type"  label="중식" />
-                        <RadioGroup id="get-jp" value="jp" name="type"  label="일식" />
+                        <RadioGroup id="get-kr" value="kr"  checked={newMenus.type === 'kr'} onChange={handleInputChange} name="type"  label="한식" />
+                        <RadioGroup id="get-ch" value="ch"  checked={newMenus.type === 'ch'} onChange={handleInputChange} name="type"  label="중식" />
+                        <RadioGroup id="get-jp" value="jp"  checked={newMenus.type === 'jp'} onChange={handleInputChange} name="type"  label="일식" />
                     </div>
                     <div className="form-check form-check-inline">
-                        <RadioGroup id="get-hot" value="hot" name="taste" label="매운맛" />
-                        <RadioGroup id="get-mild" value="mild" name="taste" label="순한맛" />
+                        <RadioGroup id="get-hot" value="hot" checked={newMenus.taste === 'hot'} onChange={handleInputChange} name="taste" label="매운맛" />
+                        <RadioGroup id="get-mild" value="mild" checked={newMenus.taste === 'mild'} onChange={handleInputChange} name="taste" label="순한맛" />
                     </div>
                     <br />
                     <input type="submit" className="btn btn-block btn-outline-success btn-send" value="수정" />

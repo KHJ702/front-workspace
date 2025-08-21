@@ -20,7 +20,8 @@ export const initMenu:Menu = {
 // 메뉴 등록 타입
 export type MenuCreate = Omit<Menu,'id'>;
 
-//...
+// 메뉴 수정 타입
+export type MenuUpdate = Pick<Menu, 'id'> & Partial<Omit<Menu,'id'>>
 
 
 
