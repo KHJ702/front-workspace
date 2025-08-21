@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
     Axios
      - 리액트 대표 비동기 통신 라이브러리
      - fetch를 사용하는 통신방식에 비해 문법이 간결하고
-       지원하는 기능이 많아 이랙트에서 많이 사용한다.
+       지원하는 기능이 많아 이펙트에서 많이 사용한다.
 */
 // api서버에서 얻어 올 데이터
 interface User {
@@ -23,6 +23,16 @@ export default function AxiosGet() {
     */
 
     useEffect (() => {
+        /*
+            axios.get/post/put/patch/delete
+            (url, 전송할데이터)
+            .then((result) => {
+                응답성공 시 실행할 코드.
+            }).
+            catch((err)=> {
+                실패 시 처리할 코드
+            })4 
+        */
 
         axios.get("https://jsonplaceholder.typicode.com/users",{
             params:{

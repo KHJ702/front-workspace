@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { boardList } from './boardMockup';  
-import BoardList from './2. BoardList';
-import BoardRegister from './2. BoardInsert';
-import BoardSearch from './2. BoardSearch';
+import BoardList from './02. BoardList';
+import BoardRegister from './02. BoardInsert';
+import BoardSearch from './02. BoardSearch';
 
 function BoardContainer(){
 

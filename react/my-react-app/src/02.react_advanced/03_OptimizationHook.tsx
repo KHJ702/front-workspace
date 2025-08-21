@@ -38,7 +38,7 @@ function OptimizationHook(){
          - 매 렌더링마다 새롭게 만들어지는 함수 생성 비용을 줄여준다.
          - 함수를 부모컴포넌트에서 생성하여 자식 컴포넌트로 전달하는 경우, 
            함수가 새롭게 생성되면서 자식컴포넌트 또한 리 렌더링 되는데, 이를 방지하기 위해 사용한다.
-         - React.memo와 함게 사용.
+         - React.memo와 함께 사용.
      */
 
         const showSorted = useCallback(() => {
