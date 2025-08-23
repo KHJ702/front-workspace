@@ -24,6 +24,7 @@
             // 위처럼 새로운 배열객체 불가능
             console.log(arr1, arr2, arr3);
 
+
             // 값 대입
             arr1[0] = 'a';
             arr1[1] = 'b';
@@ -114,6 +115,11 @@
         const arr2 = [6,7,8,9,10];
         const arr3 = arr1.concat(arr2);
 
+    /* ++ push와 concat | splice slice
+            값을 붙이는건 똑같음.
+            push, splice = 기존 배열에 추가 (원래 Array 변경O)
+            concat, slice = 새로운 배열을 만듬 (원래 Array 변경X) */
+
         console.log(arr3);
     };
 
@@ -155,7 +161,9 @@
             if(a < b) return 1;
             return 0;
             // return b.charCodeAt() - a.charCodeAt(); 
-        });
+        }); // a를 b보다 뒤에 두려면 0보다 큰 숫자 반환.
+            // a를 b보다 앞에 두려면 0보다 작은 숫자 반환.
+            // 원래 순서로 두려면 0을 반환
         console.log(arr3);
     };
     const test8 = () => {
